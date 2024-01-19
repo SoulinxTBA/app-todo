@@ -18,7 +18,7 @@ export function Header({ handleAddTask}) {
 
   return (
     <Form onSubmit={handleSubmit} className=''>
-      <Form.Control placeholder="New Task..." type="text" onChange={onChangeTitle} value={title} />
+      <Form.Control placeholder="New Task..." type="text" onChange={onChangeTitle} value={title} required/>
       <div className='text-center mt-3 mb-3'>
         <Button className='btn btn-primary' type='submit'>Add Todo</Button>
       </div>
