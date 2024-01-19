@@ -52,6 +52,31 @@ function App() {
     });
     setTasksAndSave(newTasks);
   }
+  function renameTask(taskId){
+    // setTasks(prev => {
+    //   const newTasks = [...prev];
+    //   newTasks[taskId].title = taskId.title;
+    //   return newTasks;
+    // })
+    // setTasksAndSave(newTasks)
+
+    // setTasksAndSave([...tasks, {
+    //   id: crypto.randomUUID(),
+    //   title: taskTitle,
+    //   isCompleted: false
+    // }]);
+    // setTasksAndSave([tasks => {
+    //   const newTasks = [...tasks]
+    //   // newTasks[taskId].id = taskId.id
+    //   newTasks[taskId.id].title = taskId.title
+    //   // newTasks[taskId].isCompleted = taskId.isCompleted
+    //   return newTasks
+    // }]);
+    const newTasks = tasks.map((tasks) => {
+      return tasks.id === taskId.id ? taskId.title : tasks
+    })
+    setTasks(newTasks)
+  }
 
   return (
     <>
@@ -68,7 +93,8 @@ function App() {
             <Task key={task.id} 
             task={task} 
             onDelete={deleteTaskById} 
-            onComplete={toggleTaskCompletedById}/>
+            onComplete={toggleTaskCompletedById}
+            onRename={renameTask}/>
           ))}
           
         </Col>
