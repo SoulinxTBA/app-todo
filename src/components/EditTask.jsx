@@ -3,11 +3,13 @@ import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function EditTask({task}) {
+function EditTask({task, onRename}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [newName,setNewName] = useState(task.title)
 
   function onRenameTask(ev){
     setNewName(ev.target.value)
@@ -16,6 +18,7 @@ function EditTask({task}) {
     ev.preventDefault()
     setEditMode(false)
     onRename(newName)
+    setShow(false)
   }
 
   return (
@@ -38,15 +41,17 @@ function EditTask({task}) {
         </Modal.Header>
         <Modal.Body>
             <Form onSubmit={submitRename}>
-                <Form.Control type='text' placeholder={task.title}
+                <Form.Control type='text' value={newName}
                 onChange={onRenameTask}/>
             </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary">Save Changes</Button>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={submitRename}>
+              Save Changes
+            </Button>
         </Modal.Footer>
       </Modal>
     </>
