@@ -52,7 +52,7 @@ function App() {
     });
     setTasksAndSave(newTasks);
   }
-  function renameTask(taskId, newTaskName){
+  function renameTask(newTaskName){
     // setTasks(prev => {
     //   const newTasks = [...prev];
     //   newTasks[taskId].title = taskId.title;
@@ -76,6 +76,8 @@ function App() {
       return tasks.id === taskId.id ? newTaskName : tasks
     })
     setTasksAndSave(newTasks)
+
+    // setTasks({...tasks, title:newTaskName})
   }
 
   return (

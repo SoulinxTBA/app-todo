@@ -16,7 +16,6 @@ function EditTask({task, onRename}) {
   }
   function submitRename(ev){
     ev.preventDefault()
-    setEditMode(false)
     onRename(newName)
     setShow(false)
   }
@@ -49,7 +48,7 @@ function EditTask({task, onRename}) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={submitRename}>
+            <Button variant="primary" onClick={handleClose}>
               Save Changes
             </Button>
         </Modal.Footer>
