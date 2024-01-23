@@ -26,7 +26,7 @@ export function Task({ task, onDelete, onComplete, onRename }) {
                     bg-primary rounded
                     mt-1
                     mb-0'>
-      <div className='p-2'>
+      <div className='p-2 my-auto'>
         <Form.Check type='checkbox' className="lexpurple" onClick={() => onComplete(task.id)}/>
       </div>
       <div className='me-auto p-2 text-lexpurple'>

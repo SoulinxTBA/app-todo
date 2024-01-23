@@ -30,15 +30,7 @@ function EditTask({task, onRename}) {
       </svg>
     </Button>
     </div>
-      
-
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-        
-      >
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title className='text-dark'>Edit Todo</Modal.Title>
         </Modal.Header>
