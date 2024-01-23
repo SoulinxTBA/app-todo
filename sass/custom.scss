@@ -1,0 +1,20 @@
+//custom colors
+bg-grad{
+  background-image: linear-gradient(#F4512C,#5E1B89);
+};
+
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+
+$custom-theme-colors:(
+  'lexorange': #F4512C ,
+  'lexlightorange': #FF7F4D,
+  'lexpurple': #5E1B89,
+  'lexlightpurple': #9D71BC,
+  'lexwhite': #F8FFFE,
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+/* The following line can be included in a src/App.scss */
+@import '~bootstrap/scss/bootstrap';

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '/css/custom.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from "./components/Header";
 import { Task } from "./components/Task";
 
@@ -82,10 +83,11 @@ function App() {
 
   return (
     <>
-    <Container className="bg-dark square rounded mt-3">
+    <div className="">
+    <Container className="bg-lexwhite square rounded mt-3">
       <Row>
         <Col className="d-flex mt-3 justify-content-center">
-          <p className="fs-1">Todo List</p>
+          <p className="fs-1 font-weight-bold text-lexorange">Todo List</p>
         </Col>
       </Row>
       <Row>
@@ -102,6 +104,9 @@ function App() {
         </Col>
       </Row>
     </Container>
+
+    </div>
+    
     </>
   )
 }
