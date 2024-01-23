@@ -37,18 +37,19 @@ function EditTask({task, onRename}) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        
       >
         <Modal.Header closeButton>
           <Modal.Title className='text-dark'>Edit Todo</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body >
             <Form onSubmit={submitRename}>
-                <Form.Control type='text' value={newName}
+                <Form.Control className='border border-lexlightorange' type='text' value={newName}
                 onChange={onRenameTask}/>
             </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="outline-danger" onClick={handleClose}>
               Close
             </Button>
             <Button variant="lexpurple" onClick={handleClose}>
