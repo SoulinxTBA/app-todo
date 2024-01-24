@@ -54,11 +54,16 @@ function App() {
     });
     setTasksAndSave(newTasks);
   }
+
   function renameTask(taskId, newTaskName){
     const existingValue={id: taskId, title:newTaskName, isCompleted: false}
     const newTasks = tasks.map((todo) => 
       {return todo.id === taskId ? existingValue : todo})
     setTasksAndSave(newTasks)
+  }
+
+  function clearAllTasks(){
+    setTasksAndSave([])
   }
  
   return (
@@ -78,7 +83,7 @@ function App() {
             <Button variant="outline-lexlightorange">
               Remove Completed
             </Button>
-            <Button variant="outline-danger">
+            <Button variant="outline-danger" onClick={clearAllTasks}>
               Clear All
             </Button>
           </div>
