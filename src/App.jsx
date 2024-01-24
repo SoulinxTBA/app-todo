@@ -6,6 +6,7 @@ import '/css/custom.min.css'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from "./components/Header";
 import { Task } from "./components/Task";
+import { Button } from "react-bootstrap";
 
 const LOCAL_STORAGE_KEY = 'todo:tasks';
 
@@ -53,46 +54,35 @@ function App() {
     });
     setTasksAndSave(newTasks);
   }
-  function renameTask(newTaskName){
-    // setTasks(prev => {
-    //   const newTasks = [...prev];
-    //   newTasks[taskId].title = taskId.title;
-    //   return newTasks;
-    // })
-    // setTasksAndSave(newTasks)
-
-    // setTasksAndSave([...tasks, {
-    //   id: crypto.randomUUID(),
-    //   title: taskTitle,
-    //   isCompleted: false
-    // }]);
-    // setTasksAndSave([tasks => {
-    //   const newTasks = [...tasks]
-    //   // newTasks[taskId].id = taskId.id
-    //   newTasks[taskId.id].title = taskId.title
-    //   // newTasks[taskId].isCompleted = taskId.isCompleted
-    //   return newTasks
-    // }]);
-    const newTasks = tasks.map((tasks) => {
-      return tasks.id === taskId.id ? newTaskName : tasks
-    })
+  function renameTask(taskId, newTaskName){
+    const existingValue={id: taskId, title:newTaskName, isCompleted: false}
+    const newTasks = tasks.map((todo) => 
+      {return todo.id === taskId ? existingValue : todo})
     setTasksAndSave(newTasks)
-
-    // setTasks({...tasks, title:newTaskName})
   }
-
+ 
   return (
     <>
     <div className="">
     <Container className="bg-lexwhite square rounded mt-3">
       <Row>
         <Col className="d-flex mt-3 justify-content-center">
-          <p className="fs-1 font-weight-bold text-lexorange">Todo List</p>
+          <p className="fs-1 text-lexorange" style={{fontWeight:"bold"}}>Todo List</p>
         </Col>
       </Row>
       <Row>
         <Col>
           <Header handleAddTask={addTask} />
+
+          <div className="d-flex justify-content-between">
+            <Button variant="outline-lexlightorange">
+              Remove Completed
+            </Button>
+            <Button variant="outline-danger">
+              Clear All
+            </Button>
+          </div>
+
           {tasks.map((task) => (
             <Task key={task.id} 
             task={task} 
@@ -100,13 +90,10 @@ function App() {
             onComplete={toggleTaskCompletedById}
             onRename={renameTask}/>
           ))}
-          
         </Col>
       </Row>
     </Container>
-
     </div>
-    
     </>
   )
 }
