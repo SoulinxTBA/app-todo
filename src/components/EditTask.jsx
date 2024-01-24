@@ -16,7 +16,8 @@ function EditTask({task, onRename}) {
   }
   function submitRename(ev){
     ev.preventDefault()
-    onRename(newName)
+    onRename(task.id, newName)
+    console.log(task.id, newName)
     setShow(false)
   }
 
@@ -35,16 +36,14 @@ function EditTask({task, onRename}) {
           <Modal.Title className='text-dark'>Edit Todo</Modal.Title>
         </Modal.Header>
         <Modal.Body >
-            <Form onSubmit={submitRename}>
-                <Form.Control className='border border-lexlightorange' type='text' value={newName}
-                onChange={onRenameTask}/>
-            </Form>
+          <Form.Control className='border border-lexlightorange' type='text' value={newName}
+          onChange={onRenameTask}/>
         </Modal.Body>
         <Modal.Footer>
             <Button variant="outline-danger" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="lexpurple" onClick={handleClose}>
+            <Button variant="lexpurple" onClick={submitRename}>
               Save Changes
             </Button>
         </Modal.Footer>
