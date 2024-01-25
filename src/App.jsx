@@ -54,11 +54,21 @@ function App() {
     });
     setTasksAndSave(newTasks);
   }
+
   function renameTask(taskId, newTaskName){
     const existingValue={id: taskId, title:newTaskName, isCompleted: false}
     const newTasks = tasks.map((todo) => 
       {return todo.id === taskId ? existingValue : todo})
     setTasksAndSave(newTasks)
+  }
+
+  function clearAllTasks(){
+    setTasksAndSave([])
+  }
+
+  function clearAllCompleted(){
+    const newTasks = tasks.filter(task => task.isCompleted !== true)
+    setTasksAndSave(newTasks);
   }
  
   return (
@@ -75,10 +85,10 @@ function App() {
           <Header handleAddTask={addTask} />
 
           <div className="d-flex justify-content-between">
-            <Button variant="outline-lexlightorange">
+            <Button variant="outline-lexlightorange"  onClick={clearAllCompleted}>
               Remove Completed
             </Button>
-            <Button variant="outline-danger">
+            <Button variant="outline-danger" onClick={clearAllTasks}>
               Clear All
             </Button>
           </div>

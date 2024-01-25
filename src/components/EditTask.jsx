@@ -17,7 +17,6 @@ function EditTask({task, onRename}) {
   function submitRename(ev){
     ev.preventDefault()
     onRename(task.id, newName)
-    console.log(task.id, newName)
     setShow(false)
   }
 
