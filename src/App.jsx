@@ -6,12 +6,19 @@ import '/css/custom.min.css'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from "./components/Header";
 import { Task } from "./components/Task";
-import { Button } from "react-bootstrap";
+import { Alert, Button, Modal } from "react-bootstrap";
+import Confirmation from "./components/Confirmation";
 
 const LOCAL_STORAGE_KEY = 'todo:tasks';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
+  const [secShow, setSecShow] = useState(false);
+  const handleSecClose = () => setSecShow(false);
 
   function loadSavedTasks() {
     const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -63,19 +70,22 @@ function App() {
   }
 
   function clearAllTasks(){
+    setShow(false)
     setTasksAndSave([])
   }
 
   function clearAllCompleted(){
+    setSecShow(false)
     const newTasks = tasks.filter(task => task.isCompleted !== true)
     setTasksAndSave(newTasks);
   }
- 
+
   return (
     <>
     <div className="">
+    
     <Container className="bg-lexwhite square rounded mt-3">
-      <Row>
+    <Row>
         <Col className="d-flex mt-3 justify-content-center">
           <p className="fs-1 text-lexorange" style={{fontWeight:"bold"}}>Todo List</p>
         </Col>
@@ -83,14 +93,49 @@ function App() {
       <Row>
         <Col>
           <Header handleAddTask={addTask} />
+          
 
           <div className="d-flex justify-content-between">
-            <Button variant="outline-lexlightorange"  onClick={clearAllCompleted}>
+            <Button variant="outline-lexlightorange"  onClick={() => setSecShow(true)}>
               Remove Completed
             </Button>
-            <Button variant="outline-danger" onClick={clearAllTasks}>
+            <Button variant="outline-danger" onClick={() => setShow(true)}>
               Clear All
             </Button>
+
+            <Modal show={show} onHide={handleClose} animation={false} className='modal-sm'>
+              <Modal.Header className='text-dark align-self-center'>
+                Are you sure?
+              </Modal.Header>  
+              <Modal.Body className='text-dark align-self-center'>
+                "Do you wish to Clear All Components?"
+                </Modal.Body>
+              <div className='d-flex justify-content-evenly p-2 mb-1'>
+                <Button className='' variant="outline-secondary" onClick={handleClose}>
+                  No
+                </Button>
+                <Button variant="outline-danger" onClick={clearAllTasks}>
+                  Yes
+                </Button>
+              </div>          
+            </Modal>
+
+            <Modal show={secShow} onHide={handleSecClose} animation={false} className='modal-sm'>
+              <Modal.Header className='text-dark align-self-center'>
+                Are you sure?
+              </Modal.Header>  
+              <Modal.Body className='text-dark align-self-center'>
+                "Do you wish to Remove Completed Tasks?"
+                </Modal.Body>
+              <div className='d-flex justify-content-evenly p-2 mb-1'>
+                <Button className='' variant="outline-secondary" onClick={handleSecClose}>
+                  No
+                </Button>
+                <Button variant="outline-danger" onClick={clearAllCompleted}>
+                  Yes
+                </Button>
+              </div>          
+            </Modal>
           </div>
 
           {tasks.map((task) => (
