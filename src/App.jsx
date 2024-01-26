@@ -6,8 +6,8 @@ import '/css/custom.min.css'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from "./components/Header";
 import { Task } from "./components/Task";
-import { Alert, Button, Modal } from "react-bootstrap";
-import Confirmation from "./components/Confirmation";
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
 
 const LOCAL_STORAGE_KEY = 'todo:tasks';
 
